@@ -1,7 +1,7 @@
 import os
 import urllib.request
 from pathlib import Path
-import tqdm
+from tqdm import tqdm
 
 home = str(Path.home())
 root_dir = f"{home}/climate-change/ISIMIP data"
