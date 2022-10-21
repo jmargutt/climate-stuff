@@ -4,8 +4,8 @@ from pathlib import Path
 from tqdm import tqdm
 
 home = str(Path.home())
-root_dir = f"{home}/climate-change/ISIMIP data"
-text_file = open(f"{root_dir}/filelist.txt", "r")
+root_dir = f"{home}/climate-change/ISIMIP"
+text_file = open(f"filelist.txt", "r")
 file_urls = text_file.read().split('\n')
 print(file_urls)
 
