@@ -1,13 +1,10 @@
 import glob
 import xarray as xr
 import geopandas as gpd
-import numpy as np
-import rioxarray
-import rasterio as rio
 import gc
-from tqdm import tqdm
 from pathlib import Path
-
+from tqdm import tqdm
+import os
 
 def slice_file(file, bbox, dest):
     with xr.open_dataset(file) as ds:
@@ -31,6 +28,7 @@ if __name__ == '__main__':
     ## convert into bounding box
     bbox_bfs = list(bf_gpd.total_bounds)
 
-    for file in nc_files:
+    for file in tqdm(nc_files):
         dest = file.replace(data_dir, 'ISIMIP data BFA')
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
         slice_file(file, bbox_bfs, dest)
