@@ -17,8 +17,8 @@ def slice_file(file):
     ## convert into bounding box
     bbox = list(bf_gpd.total_bounds)
 
-    data_dir = "ISIMIP data2"
-    dest = file.replace(data_dir, 'ISIMIP data BFA')
+    data_dir = "ISIMIP-data2"
+    dest = str(file).replace(data_dir, 'ISIMIP-data-BFA')
     print(f'FILE {file}')
     print(f'DEST {dest}')
     os.makedirs(os.path.dirname(dest), exist_ok=True)
