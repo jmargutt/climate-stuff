@@ -32,5 +32,5 @@ if __name__ == '__main__':
     bbox_bfs = list(bf_gpd.total_bounds)
 
     for file in nc_files:
-        dest = file.replace(data_dir, 'ISIMIP BFA')
+        dest = file.replace(data_dir, 'ISIMIP data BFA')
         slice_file(file, bbox_bfs, dest)
