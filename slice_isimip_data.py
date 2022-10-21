@@ -19,6 +19,8 @@ def slice_file(file):
 
     data_dir = "ISIMIP data2"
     dest = file.replace(data_dir, 'ISIMIP data BFA')
+    print(f'FILE {file}')
+    print(f'DEST {dest}')
     os.makedirs(os.path.dirname(dest), exist_ok=True)
 
     with xr.open_dataset(file) as ds:
