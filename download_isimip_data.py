@@ -5,7 +5,7 @@ from tqdm import tqdm
 
 home = str(Path.home())
 root_dir = f"{home}/climate-change/ISIMIP-data"
-text_file = open(f"filelist.txt", "r")
+text_file = open(f"filelist-1980.txt", "r")
 file_urls = text_file.read().split('\n')
 print(file_urls)
 
