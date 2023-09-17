@@ -31,9 +31,13 @@ def main(adminbound, input, output):
         bbox = list(gdf[ix:ix+1].total_bounds)
 
         for file in tqdm(nc_files):
-            country_file = file.replace(input, os.path.join(output, name))
-            os.makedirs(os.path.dirname(country_file), exist_ok=True)
-            slice_file(file, bbox, country_file)
+            try:
+                country_file = file.replace(input, os.path.join(output, name))
+                os.makedirs(os.path.dirname(country_file), exist_ok=True)
+                slice_file(file, bbox, country_file)
+            except:
+                print(f'error creating {country_file}')
+                continue
             
             
 if __name__ == "__main__":
