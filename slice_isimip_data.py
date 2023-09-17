@@ -24,7 +24,7 @@ def main(adminbound, input, output, countries):
 
     # load shapefile of area
     gdf = gpd.read_file(adminbound)
-    gdf = gdf[gdf['adm0_src'].isin(country_list)]
+    gdf = gdf[gdf['adm0_src'].isin(country_list)].reset_index(drop=True)
     
     for ix, row in tqdm(gdf.iterrows(), total=len(gdf)):
         # convert into bounding box
