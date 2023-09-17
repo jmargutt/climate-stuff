@@ -16,7 +16,7 @@ def slice_file(file, bbox, dest):
 @click.option('--adminbound', default='extents.geojson', help='country boundaries')
 @click.option('--input', default='ISIMIP-data', help='country boundaries')
 @click.option('--output', default='countries', help='country boundaries')
-def main(adminbound, input, output)
+def main(adminbound, input, output):
     nc_files = glob.glob(f'{input}/**/*.nc', recursive=True)
     nc_files = list(set(nc_files))
 
