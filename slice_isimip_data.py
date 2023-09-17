@@ -27,7 +27,7 @@ def main(adminbound, input, output):
         name = row['adm0_src']
         if pd.isna(name) or len(name) != 3:
             continue
-        bbox = list(row.total_bounds)
+        bbox = list(gpd.GeoSeries(row).total_bounds)
 
         for file in tqdm(nc_files):
             country_file = file.replace(input, os.path.join(output, name))
