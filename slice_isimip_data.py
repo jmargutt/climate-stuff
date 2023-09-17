@@ -10,7 +10,8 @@ import click
 def slice_file(file, bbox, dest):
     with xr.open_dataset(file) as ds:
         ds.sel(lat=slice(bbox[3], bbox[1]), lon=slice(bbox[0], bbox[2])).to_netcdf(dest)
-        
+
+
 @click.command()
 @click.option('--adminbound', default='extents.geojson', help='country boundaries')
 @click.option('--input', default='ISIMIP-data', help='country boundaries')
@@ -31,10 +32,9 @@ def main(adminbound, input, output):
 
         for file in tqdm(nc_files):
             country_file = file.replace(input, os.path.join(output, name))
-            print(country_file)
-
-            # os.makedirs(os.path.dirname(dest_contry), exist_ok=True)
-            # slice_file(file, bbox, dest_contry)
-        
+            os.makedirs(os.path.dirname(country_file), exist_ok=True)
+            slice_file(file, bbox, country_file)
+            
+            
 if __name__ == "__main__":
     main()
