@@ -1,8 +1,7 @@
 import glob
 import xarray as xr
 import geopandas as gpd
-import gc
-from pathlib import Path
+import pandas as pd
 from tqdm import tqdm
 import os
 import click
@@ -25,8 +24,8 @@ def main(adminbound, input, output):
     
     for ix, row in tqdm(gdf.iterrows(), total=len(gdf)):
         # convert into bounding box
-        name = row['iso3']
-        if name == 'None' or len(name) != 3:
+        name = row['adm0_src']
+        if pd.isna(name) or len(name) != 3:
             continue
         bbox = list(row.total_bounds)
 
