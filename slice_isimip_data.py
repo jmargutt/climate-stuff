@@ -29,15 +29,15 @@ def main(adminbound, input, output):
         if pd.isna(name) or len(name) != 3:
             continue
         bbox = list(gdf[ix:ix+1].total_bounds)
-
-        for file in tqdm(nc_files):
-            try:
+        
+        try:
+            for file in tqdm(nc_files):
                 country_file = file.replace(input, os.path.join(output, name))
                 os.makedirs(os.path.dirname(country_file), exist_ok=True)
                 slice_file(file, bbox, country_file)
-            except:
-                print(f'error creating {country_file}')
-                continue
+        except:
+            print(f'error creating files for {name}, continuing')
+            continue
             
             
 if __name__ == "__main__":
