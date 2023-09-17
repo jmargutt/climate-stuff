@@ -16,12 +16,15 @@ def slice_file(file, bbox, dest):
 @click.option('--adminbound', default='extents.geojson', help='country boundaries')
 @click.option('--input', default='ISIMIP-data', help='country boundaries')
 @click.option('--output', default='countries', help='country boundaries')
-def main(adminbound, input, output):
+@click.option('--countries', default='LBN,MMR', help='country boundaries')
+def main(adminbound, input, output, countries):
     nc_files = glob.glob(f'{input}/**/*.nc', recursive=True)
     nc_files = list(set(nc_files))
+    country_list = countries.split(',')
 
     # load shapefile of area
     gdf = gpd.read_file(adminbound)
+    gdf = gdf[gdf['adm0_src'].isin(country_list)]
     
     for ix, row in tqdm(gdf.iterrows(), total=len(gdf)):
         # convert into bounding box
