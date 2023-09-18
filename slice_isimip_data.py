@@ -29,18 +29,18 @@ def main(adminbound, input, output, countries):
     for ix, row in tqdm(gdf.iterrows(), total=len(gdf)):
         # convert into bounding box
         name = row['adm0_src']
-        if pd.isna(name) or len(name) != 3:
-            continue
         bbox = list(gdf[ix:ix+1].total_bounds)
         
-        try:
-            for file in tqdm(nc_files):
-                country_file = file.replace(input, os.path.join(output, name))
-                os.makedirs(os.path.dirname(country_file), exist_ok=True)
+        for file in tqdm(nc_files):
+            country_file = file.replace(input, os.path.join(output, name))
+            if os.path.exists(country_file):
+                continue
+            os.makedirs(os.path.dirname(country_file), exist_ok=True)
+            try:
                 slice_file(file, bbox, country_file)
-        except:
-            print(f'error creating files for {name}, continuing')
-            continue
+            except:
+                print(f'error slicing {file}, continuing')
+                continue
             
             
 if __name__ == "__main__":
