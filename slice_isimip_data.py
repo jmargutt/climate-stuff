@@ -33,14 +33,13 @@ def main(adminbound, input, output, countries):
         
         for file in tqdm(nc_files):
             country_file = file.replace(input, os.path.join(output, name))
-            if os.path.exists(country_file):
-                continue
-            os.makedirs(os.path.dirname(country_file), exist_ok=True)
-            try:
-                slice_file(file, bbox, country_file)
-            except:
-                print(f'error slicing {file}, continuing')
-                continue
+            if not os.path.exists(country_file):
+                os.makedirs(os.path.dirname(country_file), exist_ok=True)
+                try:
+                    slice_file(file, bbox, country_file)
+                except:
+                    print(f'error slicing {file}, continuing')
+                    continue
             
             
 if __name__ == "__main__":
