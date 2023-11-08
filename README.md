@@ -6,8 +6,7 @@ A bunch of scripts to extract/download/transform climate data.
 
 This is what you need to create a country-sized slice of all ISIMIP data.
 Usage:
-1. Turn on [heavy-duty-geo-data](https://github.com/jmargutt/climate-stuff.git
-)
+1. Turn on [heavy-duty-geo-data](https://portal.azure.com/#@rodekruis.onmicrosoft.com/resource/subscriptions/b2d243bd-7fab-4a8a-8261-a725ee0e3b47/resourceGroups/510global/providers/Microsoft.Compute/virtualMachines/heavy-duty-geo-data/overview)
 2. SSH into heavy-duty-geo-data (credentials are in Bitwarden > Data Analysis)
 3. mount the datalake blob storage
 ```
